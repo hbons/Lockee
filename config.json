@@ -1,0 +1,23 @@
+{
+    "server": {
+        "production": false,
+        "domain":     "lockee.me",
+        "port":       3000,
+        "ssl": {
+            "enabled":     false,
+            "port":        3001,
+            "privateKey":  "ssl/server.key",
+            "certificate": "ssl/server.crt"
+        },
+        "admin": {
+            "name":         "Hylke Bons",
+            "contact_info": "https://www.twitter.com/hbons"
+        }
+    },
+    "locker": {
+        "location":   "./blobs/",
+        "database":   "blobs.db",
+        "size_limit": "20mb",
+        "time_limit": 86400
+   }
+}

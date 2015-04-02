@@ -1,0 +1,345 @@
+// TODO: - Responsive and mobile
+//       - Rotate photos by locker tag
+
+$base-color: #599BBB
+
+*
+  margin: 0
+  padding: 0
+  line-height: 100%
+  -webkit-box-sizing: border-box
+  -moz-box-sizing: border-box
+  -o-box-sizing: border-box
+  box-sizing: border-box
+
+:focus
+    outline: none
+
+html, body
+  min-height: 100%
+
+body
+    font-family: 'Merriweather'
+    color: #fff
+    background-color: #111
+    background-image: url('/images/backgrounds/lamp.jpg')
+    background-size: cover
+
+h1
+    font-size: 34px
+    font-weight: normal
+
+h2
+    font-size: 20px
+    font-weight: normal
+
+a
+    color: $base-color
+    &:hover
+        color: lighten($base-color, 5%)
+
+a,
+strong,
+button,
+input[type='button'],
+input[type='submit']
+    font-family: 'Lato'
+
+p
+    color: #999
+    margin: 16px 0
+    line-height: 161%
+    a
+        font-size: 17px
+    strong
+        color: #fff
+
+form
+    position: absolute
+    width: 280px
+    top: 50%
+    left: 50%
+    text-align: center
+    margin-left: -140px
+    margin-top: -190px
+    @media (min-width: 960px)
+        left: 33%
+
+#locker
+    width: 280px
+    padding: 28px
+    border-radius: 6px
+    height: 280px
+    background-color: #222
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5)
+    #window
+        position: relative
+        width: 100%
+        background-color: #111
+        height: 100%
+        border-radius: 3px
+        border: 3px rgba(255, 255, 255, 0.1) solid
+        text-align: center
+        #file
+            position: relative
+            display: none
+            width: 100%
+            height: 100%
+            > a
+                font-size: 15px
+                line-height: 20px
+                color: #eee
+                background-image: url('/images/files/default.png') // TODO: Different file type icons
+                background-size: 64px
+                background-repeat: no-repeat
+                background-position: top center
+                padding: 100px 24px 0 24px
+                width: 100%
+                left: 0
+                position: absolute;
+                top: 50%
+                transform: translateY(-50%)
+                word-wrap: break-word
+                text-decoration: none
+        #door
+            background-color: #222
+            position: absolute
+            top: 0
+            left: 0
+            width: 100%
+            height: 100%
+        #spinner
+            background-image: url('/images/progress.gif');
+            background-repeat: no-repeat
+            background-position: center
+            background-size: 32px
+            width: 100%
+            height: 100%
+            display: none
+            top: 0
+            left: 0
+            position: absolute
+        #hint
+            font-size: 13px
+            width: 100%
+            color: rgba(255, 255, 255, 0.39)
+            position: absolute
+            top: 50%
+            left: 0
+            transform: translateY(-50%)
+            line-height: 150%
+            a
+                font-size: 15px
+
+#locker-empty #door
+    display: none
+
+#locker-in-use #door
+    display: block
+
+button, input[type="button"], input[type="submit"]
+    font-size: 12px
+    letter-spacing: 0.5px
+    min-width: 125px
+    font-weight: bold
+    border-radius: 4px
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.39)
+    padding: 8px
+    border: 1px rgba(darken($base-color, 70%), 0.39) solid
+    background-color: $base-color
+    color: #fff
+    text-transform: uppercase
+    cursor: pointer
+    height: 35px
+    &:hover, &:active
+      background-color: lighten($base-color, 5%)
+
+input[type='submit']:disabled
+    color: rgba(255, 255, 255, 0.39)
+    text-shadow: none
+    cursor: auto
+    &:hover
+        background-color: $base-color
+
+input
+  &[type='button']
+    margin-top: 20px
+  &[type='submit']
+    border-radius: 0 4px 4px 0
+    float: left
+    width: 28%
+    min-width: 0
+  &[type='password'], &[type='text']
+    font-family: 'Merriweather'
+    font-size: 12px
+    width: 72%
+    padding-top: 3px
+    padding-left: 10px
+    height: 35px
+    float: left
+    border-radius: 4px 0 0 4px
+    border: 1px #bbb solid
+    border-right: none
+    background-color: #fff
+  &[type='text']
+    font-size: 13px
+  &[type='file']
+    width: 100%
+    height: 100%
+    position: absolute
+    top: 0
+    left: 0
+    z-index: 1
+    opacity: 0
+    cursor: pointer
+
+.bubble
+  border-radius: 10px
+  padding: 10px
+  background-color: #fdfdfd
+  margin: 0 auto
+  margin-top: 6px
+  border: none
+  width: 85%
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5)
+  display: none
+
+.bubble:before
+  content: ""
+  position: relative
+  margin: -15px
+  display: block
+  top: -6px
+  left: 50%
+  width: 0
+  border-width: 0 15px 15px
+  border-style: solid
+  border-color: #fefefe transparent
+
+#message
+  width: auto
+  max-width: 100%
+  p
+    height: 35px
+    font-size: 13px
+    color: rgba(0, 0, 0, 0.39)
+    margin-bottom: 0
+    padding: 8px 14px
+
+#locker-go-to .bubble:before
+  top: 55px
+  left: 33%
+  border-width: 15px 15px 0
+
+#locker-go-to
+    position: absolute
+    bottom: 50px
+    margin: 0
+    top: auto
+    left: -50px
+    fieldset
+        position: relative
+        width: 350px
+        input[type="text"]
+            width: 85%
+            padding-left: 85px
+        input[type="submit"]
+            width: 15%
+        span
+            color: rgba(0, 0, 0, 0.39)
+            position: absolute
+            top: 23px
+            left: 23px
+
+#note
+  font-size: 14px
+  display: block
+  margin-top: 16px
+  line-height: 21px
+  color: rgba(255, 255, 255, 0.9)
+  text-shadow: 0 0 1px rgba(0, 0, 0, 0.8), 0 0 2px rgba(0, 0, 0, 0.6)
+
+#info-panel
+    position: absolute
+    top: 0
+    left: 0
+    display: none
+    width: 100%
+    height: 100%
+    background-color: rgba(0, 0, 0, 0.85)
+    padding: 56px
+    section
+        float: left
+        width: 300px
+        height: 260px
+        margin: 36px 36px 0 0
+    > a
+        font-size: 24px
+        display: block
+        clear: both
+        width: 300px
+
+footer
+    background-color: #222
+    border-top: 1px #000 solid
+    font-size: 13px
+    width: 100%
+    position: fixed
+    bottom: 0
+    left: 0
+    padding: 0 48px
+    #logo
+        float: left
+        display: block
+        padding: 13px 0
+        img
+            width: 86px
+    nav
+        position: relative
+        padding: 12px
+        float: left
+    #tagline
+        display: block
+        float: left
+        padding: 22px
+        color: rgba(255, 255, 255, 0.39)
+        @media (max-width: 960px)
+          display: none
+        a
+            margin-left: 4px
+            font-size: 15px
+    #artist
+        color: rgba(255, 255, 255, 0.39)
+        text-decoration: none
+        display: block
+        float: right
+        padding: 23px 0
+        span
+            font-weight: bold
+            font-family: 'Merriweather'
+            font-size: 12px
+            color: #fff
+
+@font-face
+  font-family: 'Lato'
+  src: url('../fonts/lato-regular-webfont.woff') format("woff"), url('../fonts/lato-regular-webfont.ttf') format("truetype")
+  font-weight: normal
+  font-style: normal
+
+@font-face
+  font-family: 'Lato'
+  src: url('../fonts/lato-bold-webfont.woff') format("woff"), url('../fonts/lato-bold-webfont.ttf') format("truetype")
+  font-weight: bold
+  font-style: normal
+
+@font-face
+  font-family: 'Merriweather'
+  src: url('../fonts/merriweather-regular-webfont.woff') format("woff"), url('../fonts/merriweather-regular-webfont.ttf') format("truetype")
+  font-weight: normal
+  font-style: normal
+
+@font-face
+  font-family: 'Merriweather'
+  src: url('../fonts/merriweather-bold-webfont.woff') format("woff"), url('../fonts/merriweather-bold-webfont.ttf') format("truetype")
+  font-weight: bold
+  font-style: normal

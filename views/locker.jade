@@ -1,0 +1,37 @@
+extends page
+
+block content
+    if expires_in_seconds <= 0
+        form#locker-empty(autocomplete="off")
+            #locker
+                #window
+                    #hint Drop a file here,<br> or <a href="">select</a> one…
+                    #file
+                        a(href="/", download="", target="_blank") Upload
+                    input(type="file")
+                    #door
+                    #spinner
+            fieldset.bubble
+                input(type="hidden", name="salt", value="#{salt}")
+                input(type="password", placeholder="Passphrase")
+                input(type="submit", value="Lock", disabled="disabled")
+                //- TODO: Tips for strong passphrases
+            #message.bubble
+                p lockee.me/mystuff
+    else
+        form#locker-in-use(autocomplete="off")
+            #locker
+                #window
+                    #file
+                        a(href="/", download="") Download
+                    #door
+                    #spinner
+            fieldset.bubble
+                input(type="hidden", name="salt", value="#{salt}")
+                input(type="hidden", name="expires_in_seconds", value="#{expires_in_seconds}")
+                input(type="password", placeholder="Passphrase")
+                input(type="submit", value="Open", disabled="disabled")
+            input(type="button", value="Unlock")
+            #note.
+                This locker’s content will be<br>
+                kept for <span id="time_left"></span>.

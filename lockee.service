@@ -1,0 +1,9 @@
+[Unit]
+Description=Simple and secure temporary file storage
+
+[Service]
+ExecStart=/usr/bin/node /usr/share/lockee/server.js
+Restart=on-abort
+
+[Install]
+WantedBy=multi-user.target

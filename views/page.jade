@@ -1,0 +1,40 @@
+doctype html
+html
+  head
+    meta(charset="utf-8")
+    meta(content="IE=edge,chrome=1" http-equiv="X-UA-Compatible")
+    meta(content="width=device-width, user-scalable=no", name="viewport")
+    title= page_title
+    link(rel="stylesheet", href="/stylesheets/default.css")
+    script(src="/scripts/jquery.min.js")
+    script(src="/scripts/client.js")
+  body
+    block content
+    #info-panel
+        h1 #{description}
+        p Seen those luggage lockers at the railway station? It’s like that, but for files.
+        section
+            h2 Simple
+            p Tag your locker, select a file from your device, and enter a passphrase.
+            p To retrieve a stored file, go to <br><strong>#{domain}/your_tag</strong> and enter your passphrase.
+        section
+            h2 Private
+            p Lockers are anonymous and passphrase protected. No personal information is required or collected.
+            p Files put in lockers are encrypted on your device before being sent securely to the server.
+        section
+            h2 Open Source
+            p #{app_name} is Free and Open Source software. You can see the <a href="#{repo_url}" target="blank">source code</a> and even run your own instance.
+            p Questions or comments?<br>Contact <a href="#{admin_contact_info}" target="_blank">#{admin_name}</a>.
+        a(href="") Aha. Cheers, thanks.
+    footer
+        a#logo(href="/", target="_blank")
+            img(src="/images/logo/logo-inverted.png" alt="#{page_title}")
+        nav
+            button Go To Locker
+            form#locker-go-to(autocomplete="off")
+                fieldset.bubble
+                    span #{domain}/
+                    input(type="text", maxlength="24")
+                    input(type="submit", value="Go", disabled="disabled")
+        #tagline #{description} <a href="">I beg your pardon?</a>
+        a#artist(href="http://planetpeanut.uk/", target="_blank") Cover by &nbsp;<span>Hylke Bons</span>

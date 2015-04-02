@@ -1,0 +1,26 @@
+{
+  "name": "Lockee",
+  "version": "1.0.0",
+  "description": "Temporary encrypted file lockers on the web.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hbons/Lockee"
+  },
+  "main": "server.js",
+  "author": "Hylke Bons",
+  "contributors": [{
+    "name": "Hylke Bons",
+    "email": "hi@planetpeanut.uk"
+  }],
+  "license": "AGPLv3",
+  "dependencies": {
+    "express": "~4.12.2",
+    "jade": "~1.9.2",
+    "sqlite3": "~3.0.5",
+    "body-parser": "~1.12.0",
+    "compression": "~1.4.3",
+    "node-sass": "~3.0.0-alpha.0",
+    "async": "~0.9.0",
+    "helmet": "~0.7.1"
+  }
+}
