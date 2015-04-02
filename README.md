@@ -3,7 +3,7 @@
 ## Temporary encrypted file lockers on the web.
 Seen those luggage lockers at the railway station? It’s like that, but for files.
 
-![Lockee Screenshot](https://raw.githubusercontent.com/hbons/Lockee/master/public/images/screenshots/screenshot-1.jpg)
+![Lockee Screenshot](https://raw.githubusercontent.com/hbons/Lockee/master/public/images/screenshots/screenshot-2.png)
 
 ### Simple
 Tag your locker, select a file from your device, and enter a passphrase.
