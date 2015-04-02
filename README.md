@@ -29,4 +29,4 @@ npm start
 By default, Lockee is accessible on `http://localhost:3000/`. You can change this, as well as other configuration options, in [config.json](config.json).
 
 ## License
-You can use, modify, and redistribute Lockee under the terms of the [AGPLv3](), given that you change the software’s visible name and logo.
+You can use, modify, and redistribute Lockee under the terms of the [AGPLv3](LICENSE.txt), given that you change the software’s visible name and logo.
