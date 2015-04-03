@@ -16,7 +16,7 @@
 
 
 importScripts('/scripts/sjcl.min.js',
-              '/scripts/cryptojs.aes.min.js');
+              '/scripts/forge.min.js');
 
 self.addEventListener('message', function(event) {
     var url        = event.data[0];
@@ -55,11 +55,11 @@ self.addEventListener('message', function(event) {
         var closedLocker = JSON.parse(request.responseText).locker;
         request.responseText = null;
 
-        var aes_key = CryptoJS.enc.Hex.parse(passphrase);
-        var aes_iv  = CryptoJS.enc.Hex.parse(salt);
+        var iv  = forge.util.hexToBytes(salt);
+        var key = forge.pkcs5.pbkdf2(passphraseDigest, salt, 1, 32);
 
-        var fileName    = CryptoJS.AES.decrypt(closedLocker.encrypted_file.name,    derivedKey).toString(CryptoJS.enc.Utf8);
-        var fileContent = CryptoJS.AES.decrypt(closedLocker.encrypted_file.content, derivedKey).toString(CryptoJS.enc.Utf8);
+        var fileName    = decrypt(key, iv, closedLocker.encrypted_file.name);
+        var fileContent = decrypt(key, iv, closedLocker.encrypted_file.content);
 
         var contentBlob = dataURItoBlob(fileContent);
 
@@ -69,6 +69,17 @@ self.addEventListener('message', function(event) {
 
     request.send(lockerRequest);
 });
+
+function decrypt(key, iv, base64Data) {
+    var data = forge.util.decode64(base64Data);
+
+    var decipher = forge.cipher.createDecipher('AES-CBC', key);
+    decipher.start({iv: iv});
+    decipher.update(forge.util.createBuffer(data));
+    decipher.finish();
+
+    return decipher.output.data;
+}
 
 function dataURItoBlob(dataURI) {
     // TODO: Safari doesn't support atob() in web workers

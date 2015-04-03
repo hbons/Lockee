@@ -16,7 +16,7 @@
 
 
 importScripts('/scripts/sjcl.min.js',
-              '/scripts/cryptojs.aes.min.js');
+              '/scripts/forge.min.js');
 
 self.addEventListener('message', function(event) {
     var url         = event.data[0];
@@ -30,9 +30,12 @@ self.addEventListener('message', function(event) {
 
     var pbkdf2Bits   = sjcl.misc.pbkdf2(passphrase, saltBits, 100 * 1000, bitLength);
     var pbkdf2Digest = sjcl.codec.hex.fromBits(pbkdf2Bits);
-    
+
     var derivedKey       = pbkdf2Digest.substr(0,             bitLength / 8);
     var passphraseDigest = pbkdf2Digest.substr(bitLength / 8, bitLength / 8);
+
+    var iv  = forge.util.hexToBytes(salt);
+    var key = forge.pkcs5.pbkdf2(passphraseDigest, salt, 1, (bitLength / 2) / 8);
 
     // TODO: Chunked encryption and upload
     var closedLocker = JSON.stringify({
@@ -42,8 +45,8 @@ self.addEventListener('message', function(event) {
                 'salt':              salt
             },
             'encrypted_file': {
-                'name':    '' + CryptoJS.AES.encrypt(fileName,    derivedKey),
-                'content': '' + CryptoJS.AES.encrypt(fileContent, derivedKey)
+                'name':    '' + encrypt(key, iv, fileName),
+                'content': '' + encrypt(key, iv, fileContent)
             }
         }
     });
@@ -69,3 +72,12 @@ self.addEventListener('message', function(event) {
 
     request.send(closedLocker);
 });
+
+function encrypt(key, iv, data) {
+    var cipher = forge.cipher.createCipher('AES-CBC', key);
+    cipher.start({iv: iv});
+    cipher.update(forge.util.createBuffer(data));
+    cipher.finish();
+
+    return forge.util.encode64(cipher.output.data);
+}

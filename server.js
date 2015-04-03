@@ -285,9 +285,7 @@ app.post('/*', function(req, res) {
 
         if (!locker.auth_info.passphrase_digest.match('^[a-f0-9]+$') ||
             !locker.auth_info.salt.match('^[a-f0-9]+$') ||
-            !locker.encrypted_file.content.substr(0, 10) == 'U2FsdGVkX1' ||
             !locker.encrypted_file.content.match('^[0-9a-zA-Z\+/=]+$') ||
-            !locker.encrypted_file.name.substr(0, 10) == 'U2FsdGVkX1' ||
             !locker.encrypted_file.name.match('^[0-9a-zA-Z\+/=]+$')) {
 
             return res.status(400).json({}); // Bad request
