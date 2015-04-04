@@ -307,13 +307,13 @@ $(document).ready(function() {
             }
 
         } else if (expires_in_seconds < 120) {
-            var message = '' + Math.floor(expires_in_seconds / 60) + ' more minute';
+            var message = '1 more minute';
 
-        } else if (expires_in_seconds < 7200) {
+        } else if (expires_in_seconds < 3600) {
             var message = '' + Math.floor(expires_in_seconds / 60) + ' more minutes';
 
         } else if (expires_in_seconds < 3600 * 2) {
-            var message = '' + Math.floor(expires_in_seconds / 3600) + ' more hour';
+            var message = '1 more hour';
 
         } else {
             var message = '' + Math.floor(expires_in_seconds / 3600) + ' more hours';
