@@ -6,9 +6,11 @@ html
     meta(content="width=device-width, user-scalable=no", name="viewport")
     title= page_title
     link(rel="stylesheet", href="/stylesheets/default.css")
+    link(rel="prefetch" href="/images/status/idle.png")
+    link(rel="prefetch" href="/images/status/in-progress.png")
+    link(rel="prefetch" href="/images/status/error.png")
     script(src="/scripts/jquery.min.js")
     script(src="/scripts/client.js")
-    //- TODO: Preload all images
   body
     block content
     #info-panel
