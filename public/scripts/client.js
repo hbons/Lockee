@@ -25,7 +25,7 @@ $(document).ready(function() {
         hidePassphraseDialog();
 
         showDoor();
-        showSpinner();
+        showDialAnimation();
 
         var passphrase = getPassphraseFromFieldset();
         var salt       = getSaltFromFieldset();
@@ -36,7 +36,6 @@ $(document).ready(function() {
             var err = event.data[0];
 
             encryptLockerWorker.terminate();
-            hideSpinner();
 
             if (err) {
                 enablePassphraseDialog();
@@ -44,7 +43,7 @@ $(document).ready(function() {
                 showErrorNotification();
 
             } else {
-                showSuccessNotification();
+                closeDoor();
             }
         });
 
@@ -57,7 +56,7 @@ $(document).ready(function() {
 
     $('#locker-in-use').on('submit', function(event) {
         disablePassphraseDialog();
-        showSpinner();
+        showDialAnimation();
         
         var passphrase = getPassphraseFromFieldset();
         var salt       = getSaltFromFieldset();
@@ -67,12 +66,12 @@ $(document).ready(function() {
 
         decryptLockerWorker.addEventListener('message', function(event) {
             var err = event.data[0];
-            hideDoor();
-            hideSpinner();
 
             if (err) {
                 // TODO: Shake effect
                 enablePassphraseDialog();
+                hideDialAnimation();
+
                 return;
             }
 
@@ -82,9 +81,9 @@ $(document).ready(function() {
             decryptLockerWorker.terminate();
 
             hidePassphraseDialog();
+            openDoor();
 
             showDownloadLink(url, fileName);
-            setTimeout(showNote, 600);
 
             // TODO: "Empty now" link
         });
@@ -117,16 +116,16 @@ $(document).ready(function() {
     // Passphrase fieldset
     function showPassphraseDialog() {
         var showDialog = function() {
-            $('#locker-empty fieldset').fadeIn(500);
-            $('#locker-in-use fieldset').fadeIn(500);
+            $('#locker-empty fieldset').fadeIn(250);
+            $('#locker-in-use fieldset').fadeIn(250);
             $('input[type="password"]').val('');
             putCursorAtEnd($('input[type="password"]'));
         };
 
-        $('input[type="button"]').fadeOut(200);
+        $('input[type="button"]').fadeOut(250);
 
         if ($('#note').length)
-            $('#note').fadeOut(200, showDialog);
+            $('#note').fadeOut(250, showDialog);
         else
             showDialog();
     }
@@ -167,7 +166,7 @@ $(document).ready(function() {
     // Notifications
     function showSuccessNotification() {
         $('#message p').text('lockee.me' + window.location.pathname);
-        $('#message').fadeIn().css('display', 'inline-block'); 
+        $('#message').delay(250).fadeIn(250).css('display', 'inline-block'); 
     }
 
     function showErrorNotification() {
@@ -178,21 +177,38 @@ $(document).ready(function() {
 
     // Door
     function showDoor() {
-        $('#door').show();
+        $('#door').fadeIn(250);
     }
 
     function hideDoor() {
-        $('#door').hide();
+        $('#door').fadeOut(250);
+    }
+
+    function openDoor() {
+        $("#dial").on("animationiteration", function() {
+            hideDialAnimation();
+            hideDoor();
+            showNote();
+        });
+    }
+
+    function closeDoor() {
+        $("#dial").on("animationiteration", function() {
+            hideDialAnimation();
+            showSuccessNotification();
+        });
     }
 
 
-    // Spinner
-    function showSpinner() {
-        $('#spinner').show();
+    // Dial
+    function showDialAnimation() {
+        $('#dial').css("animation-play-state", "running");
+        $('#dial').show();
     }
 
-    function hideSpinner() {
-        $('#spinner').fadeOut(250);
+    function hideDialAnimation() {
+        $('#dial').css("animation-play-state", "paused");
+        $('#dial').fadeOut(250);
     }
 
 
@@ -201,7 +217,7 @@ $(document).ready(function() {
         $('#file a').attr('href', url);
         $('#file a').attr('download', fileName);
         $('#file a').text(fileName);
-        $('#file').fadeIn(250);
+        $('#file').delay(250 + 1).fadeIn(250);
     }
 
     function hideDownloadLink() {
@@ -218,7 +234,7 @@ $(document).ready(function() {
 
     // Note
     function showNote() {
-        $('#note').fadeIn(200);
+        $('#note').delay(250 + 1).fadeIn(250);
     }
 
 
@@ -252,7 +268,7 @@ $(document).ready(function() {
 
     // Go To fieldset
     $('footer button').on('click', function() {
-        $('#locker-go-to fieldset').fadeToggle(500);
+        $('#locker-go-to fieldset').fadeToggle(250);
         putCursorAtEnd($('#locker-go-to fieldset input[type="text"]'));
     });
 
@@ -338,7 +354,7 @@ $(document).ready(function() {
 
     // Browser support check
     if (window.File && window.FileReader && window.FileList && window.Blob)
-        $('form input[type="file"]').bind('change', handleFileSelect);
+        $('form input[type="file"]').on('change', handleFileSelect);
     else
         alert('Sorry, this browser is not supported. :(');
 });
