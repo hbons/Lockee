@@ -67,6 +67,7 @@ $(document).ready(function() {
 
         decryptLockerWorker.addEventListener('message', function(event) {
             var err = event.data[0];
+            hideDoor();
             hideSpinner();
 
             if (err) {
@@ -80,7 +81,6 @@ $(document).ready(function() {
 
             decryptLockerWorker.terminate();
 
-            hideDoor();
             hidePassphraseDialog();
 
             showDownloadLink(url, fileName);
@@ -96,7 +96,6 @@ $(document).ready(function() {
 
     var handleFileSelect = function(event) {
         hideHint();
-        showSpinner();
 
         var file   = event.target.files[0];        
         var reader = new FileReader();
@@ -105,7 +104,6 @@ $(document).ready(function() {
             fileName    = file.name;
             fileContent = readerEvent.target.result;
 
-            hideSpinner();
             showDownloadLink(null, fileName);
             showPassphraseDialog();
         };
@@ -180,21 +178,21 @@ $(document).ready(function() {
 
     // Door
     function showDoor() {
-        $('#door').fadeIn(250);
+        $('#door').show();
     }
 
     function hideDoor() {
-        $('#door').fadeOut(250);
+        $('#door').hide();
     }
 
 
     // Spinner
     function showSpinner() {
-        $('#spinner').fadeIn(250);
+        $('#spinner').show();
     }
 
     function hideSpinner() {
-        $('#spinner').hide();
+        $('#spinner').fadeOut(250);
     }
 
 

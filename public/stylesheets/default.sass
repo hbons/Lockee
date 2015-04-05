@@ -70,15 +70,15 @@ form
     padding: 28px
     border-radius: 6px
     height: 280px
-    background-color: #222
+    background-color: #111
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5)
     #window
         position: relative
         width: 100%
-        background-color: #111
+        background-color: #000
         height: 100%
         border-radius: 3px
-        border: 3px rgba(255, 255, 255, 0.1) solid
+        border: 3px #222 solid
         text-align: center
         #file
             position: relative
@@ -102,23 +102,36 @@ form
                 word-wrap: break-word
                 text-decoration: none
         #door
-            background-color: #222
+            background-color: #111
             position: absolute
             top: 0
             left: 0
             width: 100%
             height: 100%
-        #spinner
-            background-image: url('/images/progress.gif');
+            background-image: url('/images/progress-idle.png');
             background-repeat: no-repeat
+            background-size: 88px
             background-position: center
-            background-size: 32px
+            position: absolute
+        #spinner
             width: 100%
             height: 100%
             display: none
             top: 0
             left: 0
             position: absolute
+            &:after
+                content: ""
+                background-image: url('/images/progress.png');
+                background-repeat: no-repeat
+                background-size: 88px
+                background-position: center
+                animation: spin 1s infinite ease
+                position: absolute
+                top: 0
+                left: 0
+                width: 100%
+                height: 100%
         #hint
             font-size: 13px
             width: 100%
@@ -319,6 +332,18 @@ footer
             font-family: 'Merriweather'
             font-size: 12px
             color: #fff
+
+
+// Animations
+
+@-moz-keyframes spin
+    0%
+        -moz-transform: rotate(0deg)
+    100%
+        -moz-transform: rotate(360deg)
+
+
+// Fonts
 
 @font-face
   font-family: 'Lato'
