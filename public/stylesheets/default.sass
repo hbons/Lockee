@@ -108,24 +108,27 @@ form
             left: 0
             width: 100%
             height: 100%
-            background-image: url('/images/status/idle.png');
-            background-repeat: no-repeat
-            background-size: 88px
-            background-position: center
             position: absolute
         #dial
-            display: none
-            background-image: url('/images/status/in-progress.png');
             background-repeat: no-repeat
             background-size: 88px
             background-position: center
-            animation: spin 1s infinite ease
-            animation-play-state: paused
             position: absolute
             top: 0
             left: 0
             width: 100%
             height: 100%
+            &.idle
+                background-image: url('/images/status/idle.png');
+                display: block
+            &.error
+                background-image: url('/images/status/error.png');
+                display: block
+            &.in-progress
+                background-image: url('/images/status/in-progress.png');
+                display: block
+                animation: spin 1s infinite ease
+                animation-play-state: paused
         #hint
             font-size: 13px
             width: 100%

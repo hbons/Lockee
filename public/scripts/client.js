@@ -185,16 +185,16 @@ $(document).ready(function() {
     }
 
     function openDoor() {
-        $("#dial").on("animationiteration", function() {
-            hideDialAnimation();
+        $('#dial').on('animationiteration', function() {
+            hideDialAnimation(true);
             hideDoor();
             showNote();
         });
     }
 
     function closeDoor() {
-        $("#dial").on("animationiteration", function() {
-            hideDialAnimation();
+        $('#dial').on('animationiteration', function() {
+            hideDialAnimation(false);
             showSuccessNotification();
         });
     }
@@ -202,13 +202,22 @@ $(document).ready(function() {
 
     // Dial
     function showDialAnimation() {
-        $('#dial').css("animation-play-state", "running");
+        $('#dial').removeClass('idle');
+        $('#dial').addClass('in-progress');
+        $('#dial.in-progress').css('animation-play-state', 'running');
         $('#dial').show();
     }
 
-    function hideDialAnimation() {
-        $('#dial').css("animation-play-state", "paused");
-        $('#dial').fadeOut(250);
+    function hideDialAnimation(animate) {
+        $('#dial.in-progress').css('animation-play-state', 'paused');
+
+        if (animate) {
+          $('#dial').fadeOut(250);
+
+        } else {
+            $('#dial').removeClass('in-progress');
+            $('#dial').addClass('idle');
+        }
     }
 
 
@@ -286,7 +295,7 @@ $(document).ready(function() {
     });
 
     $(document).mouseup(function (event) {
-        var container = $("#locker-go-to fieldset");
+        var container = $('#locker-go-to fieldset');
 
         if (!container.is(event.target) && container.has(event.target).length === 0)
             container.fadeOut(250);
