@@ -38,8 +38,7 @@ $(document).ready(function() {
             encryptLockerWorker.terminate();
 
             if (err) {
-                enablePassphraseDialog();
-                showPassphraseDialog();
+                showDialError();
                 showErrorNotification();
 
             } else {
@@ -57,7 +56,7 @@ $(document).ready(function() {
     $('#locker-in-use').on('submit', function(event) {
         disablePassphraseDialog();
         showDialAnimation();
-        
+
         var passphrase = getPassphraseFromFieldset();
         var salt       = getSaltFromFieldset();
 
@@ -68,9 +67,8 @@ $(document).ready(function() {
             var err = event.data[0];
 
             if (err) {
-                // TODO: Shake effect
                 enablePassphraseDialog();
-                hideDialAnimation();
+                showDialError();
 
                 return;
             }
@@ -170,8 +168,8 @@ $(document).ready(function() {
     }
 
     function showErrorNotification() {
-        // TODO: Something more integrated
-        alert('Something went wrong.');
+        $('#message p').text('Something went wrong...');
+        $('#message').css('display', 'inline-block').hide().fadeIn(250);
     }
 
 
@@ -218,6 +216,16 @@ $(document).ready(function() {
             $('#dial').removeClass('in-progress');
             $('#dial').addClass('idle');
         }
+    }
+
+    function showDialError() {
+        $('#dial').on('animationiteration', function() {
+            $('#dial.in-progress').css('animation-play-state', 'paused');
+            $('#dial').removeClass('in-progress');
+            $('#dial').addClass('error');
+        });
+
+        $('input[type="password"]').select();
     }
 
 
