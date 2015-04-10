@@ -13,7 +13,7 @@ html
     script(src="/scripts/jquery.min.js")
     script(src="/scripts/client.js")
   body
-    #cover(title="#{cover_file_name}")
+    img#cover(data-src="#{cover_file_name}")
     block content
     #info-panel
         h1 #{description}
@@ -46,4 +46,4 @@ html
     img(src='/images/status/idle.png')
     img(src='/images/status/in-progress.png')
     img(src='/images/status/error.png')
-    img(src='#{cover_file_name}')
+    img#cover-prefetch(src='#{cover_file_name}')

@@ -75,7 +75,7 @@ app.use(helmet.hidePoweredBy());
 app.use(helmet.crossdomain());
 
 
-// Rater limiter
+// Rate limiter
 var connections = {};
 var blockedConnections = {};
 
