@@ -128,8 +128,7 @@ db.run("CREATE TABLE IF NOT EXISTS lockers (\
             path_digest TEXT PRIMARY KEY, \
             passphrase_digest TEXT, \
             salt TEXT, \
-            encrypted_file_name TEXT) \
-        WITHOUT ROWID");
+            encrypted_file_name TEXT)");
 
 fs.mkdir(config.locker.location, function(err) {
    if (err && err.code != 'EEXIST')
@@ -360,15 +359,20 @@ function getCover(hash) {
 
 
 // Server
+var port = process.env.OPENSHIFT_NODEJS_PORT || config.server.port
+var ip   = process.env.OPENSHIFT_NODEJS_IP   || '127.0.0.1'
+
 if (config.server.ssl.enabled) {
     var credentials = {
         key:  fs.readFileSync(config.server.ssl.privateKey,  'utf8'),
         cert: fs.readFileSync(config.server.ssl.certificate, 'utf8')
     };
 
+    ip = process.env.OPENSHIFT_NODEJS_PORT || config.server.ssl.port
+
     var secure_server = https.createServer(credentials, app);
-    secure_server.listen(config.server.ssl.port);    
+    secure_server.listen(config.server.ssl.port, ip);
 }
 
 var server = http.createServer(app);
-server.listen(config.server.port);    
+server.listen(port, ip);
