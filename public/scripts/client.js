@@ -359,7 +359,8 @@ $(document).ready(function() {
 
 
     $('form input[type="submit"]').attr('disabled', true);
-
+    $('#cover').css('background-image', 'url("' + $('#cover').attr('title') + '")');
+    $('#cover').fadeIn(1500);
 
     // Browser support check
     if (window.File && window.FileReader && window.FileList && window.Blob)

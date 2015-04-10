@@ -18,6 +18,7 @@
 // Configuration
 var package_config = require('./package.json');
 var config         = require('./config.json');
+var covers         = require('./covers.json');
 
 
 // Packages
@@ -156,6 +157,9 @@ app.get('/', function(req, res) {
         admin_contact_info: config.server.admin.contact_info,
         repo_url:           package_config.repository.url,
         page_title:         package_config.name + ' — ' + package_config.description,
+        cover_file_name:    config.server.covers + covers[0].file_name,
+        cover_author:       covers[0].author,
+        cover_link:         covers[0].link
     });
 })
 
@@ -205,6 +209,8 @@ app.get('/*', function(req, res) {
                 }
             },
             function(callback) {
+                var cover = getCover(salt);
+
                 res.render('locker', {
                     domain:             config.server.domain,
                     app_name:           package_config.name,
@@ -214,7 +220,10 @@ app.get('/*', function(req, res) {
                     repo_url:           package_config.repository.url,
                     page_title:         pageTitle,
                     expires_in_seconds: expiresInSeconds,
-                    salt:               salt
+                    salt:               salt,
+                    cover_file_name:    config.server.covers + cover.file_name,
+                    cover_author:       cover.author,
+                    cover_link:         cover.link
                 });
 
                 callback();
@@ -338,6 +347,15 @@ function digestForPath(path) {
 
 function calcExpiresInSeconds(timestamp) {
     return timestamp + config.locker.time_limit - Math.floor(new Date() / 1000);   
+}
+
+function getCover(hash) {
+    var number = 0;
+
+    for (i = 0; i < hash.length; i++)
+        number += hash.charCodeAt(i);
+
+    return covers[number % covers.length];
 }
 
 

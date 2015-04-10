@@ -3,6 +3,7 @@
         "production": false,
         "domain":     "lockee.me",
         "port":       3000,
+        "covers":     "/images/covers/",
         "ssl": {
             "enabled":     false,
             "port":        3001,

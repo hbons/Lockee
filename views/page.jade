@@ -9,9 +9,11 @@ html
     link(rel="prefetch" href="/images/status/idle.png")
     link(rel="prefetch" href="/images/status/in-progress.png")
     link(rel="prefetch" href="/images/status/error.png")
+    link(rel="prefetch" href="#{cover_file_name}")
     script(src="/scripts/jquery.min.js")
     script(src="/scripts/client.js")
   body
+    #cover(title="#{cover_file_name}")
     block content
     #info-panel
         h1 #{description}
@@ -40,7 +42,8 @@ html
                     input(type="text", maxlength="24")
                     input(type="submit", value="Go", disabled="disabled")
         #tagline #{description} <a href="">I beg your pardon?</a>
-        a#artist(href="http://planetpeanut.uk/", target="_blank") Cover by &nbsp;<span>Hylke Bons</span>
+        a#artist(href="#{cover_link}", target="_blank") Cover by &nbsp;<span>#{cover_author}</span>
     img(src='/images/status/idle.png')
     img(src='/images/status/in-progress.png')
     img(src='/images/status/error.png')
+    img(src='#{cover_file_name}')

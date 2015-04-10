@@ -1,5 +1,4 @@
 // TODO: - Responsive and mobile
-//       - Rotate photos by locker tag
 
 $base-color: #599BBB
 
@@ -22,11 +21,18 @@ body
     font-family: 'Merriweather'
     color: #fff
     background-color: #111
-    background-image: url('/images/backgrounds/lamp.jpg')
-    background-size: cover
     > img
         width: 0
         height: 0
+
+#cover
+    position: absolute
+    width: 100%
+    height: 100%
+    display: none
+    background-color: #111
+    background-size: cover
+    background-position: bottom center
 
 h1
     font-size: 34px
