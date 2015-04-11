@@ -376,7 +376,7 @@ $(document).ready(function() {
     $('form input[type="submit"]').attr('disabled', true);
 
     $('#cover-prefetch').load(function() {
-        $('#cover').css('background-image', 'url("' + $('#cover').attr('data-src') + '")');
+        $('#cover').css('background-image', 'url("' + $('#cover-prefetch').attr('src') + '")');
         $('#cover').fadeIn(1500);
     });
 
