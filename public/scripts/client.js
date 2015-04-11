@@ -67,9 +67,7 @@ $(document).ready(function() {
             var err = event.data[0];
 
             if (err) {
-                enablePassphraseDialog();
                 showDialError();
-
                 return;
             }
 
@@ -142,6 +140,7 @@ $(document).ready(function() {
         $('input[type="file"]').show();
         enableElement($('input[type="password"]'));
         enableElement($('input[type="submit"]'));
+        $('input[type="password"]').select();
     }
 
     $('input[type="button"]').on('click', function() {
@@ -230,9 +229,8 @@ $(document).ready(function() {
             $('#dial').addClass('error');
           
             $('#dial').off();
+            enablePassphraseDialog();
         });
-
-        $('input[type="password"]').select();
     }
 
 
