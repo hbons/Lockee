@@ -76,18 +76,21 @@ form
 #locker
     width: 280px
     padding: 28px
-    border-radius: 6px
+    border-radius: 28px
     height: 280px
-    background-color: #111
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5)
+    background-color: #171717
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.8)
     #window
         position: relative
         width: 100%
         background-color: #000
         height: 100%
-        border-radius: 3px
+        border-radius: 0px
         border: 3px #222 solid
+        border-radius: 3px
         text-align: center
+        &:hover
+            background-color: #0d0d0d
         #file
             position: relative
             display: none
@@ -110,7 +113,7 @@ form
                 word-wrap: break-word
                 text-decoration: none
         #door
-            background-color: #111
+            background-color: #171717
             position: absolute
             top: 0
             left: 0
@@ -140,7 +143,7 @@ form
         #hint
             font-size: 13px
             width: 100%
-            color: rgba(255, 255, 255, 0.39)
+            color: rgba(255, 255, 255, 0.5)
             position: absolute
             top: 50%
             left: 0
@@ -298,7 +301,7 @@ input
         width: 300px
 
 footer
-    background-color: #222
+    background-color: #171717
     border-top: 1px #000 solid
     font-size: 13px
     width: 100%
