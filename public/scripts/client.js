@@ -187,6 +187,8 @@ $(document).ready(function() {
             hideDialAnimation(true);
             hideDoor();
             showNote();
+          
+            $('#dial').off();
         });
     }
 
@@ -194,6 +196,8 @@ $(document).ready(function() {
         $('#dial').on('animationiteration', function() {
             hideDialAnimation(false);
             showSuccessNotification();
+          
+           $('#dial').off();
         });
     }
 
@@ -201,6 +205,7 @@ $(document).ready(function() {
     // Dial
     function showDialAnimation() {
         $('#dial').removeClass('idle');
+        $('#dial').removeClass('error');
         $('#dial').addClass('in-progress');
         $('#dial.in-progress').css('animation-play-state', 'running');
         $('#dial').show();
@@ -223,6 +228,8 @@ $(document).ready(function() {
             $('#dial.in-progress').css('animation-play-state', 'paused');
             $('#dial').removeClass('in-progress');
             $('#dial').addClass('error');
+          
+            $('#dial').off();
         });
 
         $('input[type="password"]').select();
