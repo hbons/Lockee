@@ -7,11 +7,26 @@
     {
         "author":    "Hylke Bons",
         "link":      "http://planetpeanut.uk/",
-        "file_name": "lanterns.jpg"
+        "file_name": "fairies.jpg"
+    },
+    {
+        "author":    "Hylke Bons",
+        "link":      "http://planetpeanut.uk/",
+        "file_name": "grin.jpg"
     },
     {
         "author":    "Garrett LeSage",
         "link":      "https://www.flickr.com/photos/garrett/15183725729/",
         "file_name": "sunflower-dreams.jpg"
+    },
+    {
+        "author":    "Garrett LeSage",
+        "link":      "https://www.flickr.com/photos/garrett/13959144344/",
+        "file_name": "pink-tulips.jpg"
+    },
+    {
+        "author":    "Garrett LeSage",
+        "link":      "https://www.flickr.com/photos/garrett/9590941866/",
+        "file_name": "hibiscus-butterfly.jpg"
     }
 ]
