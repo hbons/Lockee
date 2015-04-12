@@ -337,19 +337,19 @@ $(document).ready(function() {
                 var message = '' + expires_in_seconds + ' more seconds';
 
             } else {
-                var message = '' + expires_in_seconds + ' more second';
+                var message = ' another second';
                 clearInterval(timeRemainingTimer);
                 setTimeout(function() { window.location.reload(); }, 1000);
             }
 
         } else if (expires_in_seconds < 120) {
-            var message = '1 more minute';
+            var message = 'another minute';
 
         } else if (expires_in_seconds < 3600) {
             var message = '' + Math.floor(expires_in_seconds / 60) + ' more minutes';
 
         } else if (expires_in_seconds < 3600 * 2) {
-            var message = '1 more hour';
+            var message = 'another hour';
 
         } else {
             var message = '' + Math.floor(expires_in_seconds / 3600) + ' more hours';
