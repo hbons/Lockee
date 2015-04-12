@@ -186,7 +186,9 @@ $(document).ready(function() {
     }
 
     function openDoor() {
-        $('#dial').on('animationiteration webkitAnimationIteration oanimationiteration MSAnimationIteration', function() {
+        $('#dial').on('animationiteration webkitAnimationIteration ' +
+                      'oanimationiteration MSAnimationIteration', function() {
+
             hideDialAnimation(true);
             hideDoor();
             showNote();
@@ -196,7 +198,9 @@ $(document).ready(function() {
     }
 
     function closeDoor() {
-        $('#dial').on('animationiteration webkitAnimationIteration oanimationiteration MSAnimationIteration', function() {
+        $('#dial').on('animationiteration webkitAnimationIteration ' +
+                      'oanimationiteration MSAnimationIteration', function() {
+
             hideDialAnimation(false);
             showSuccessNotification();
           
