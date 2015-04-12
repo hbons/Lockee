@@ -171,6 +171,10 @@ $(document).ready(function() {
         $('#message').css('display', 'inline-block').hide().fadeIn(250);
     }
 
+    $('#message').on('click', function() {
+       location.reload();
+    });
+
 
     // Door
     function showDoor() {
