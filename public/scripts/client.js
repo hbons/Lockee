@@ -162,12 +162,12 @@ $(document).ready(function() {
 
     // Notifications
     function showSuccessNotification() {
-        $('#message p').text('lockee.me' + window.location.pathname);
+        $('#message').text('lockee.me' + window.location.pathname);
         $('#message').css('display', 'inline-block').hide().fadeIn(250);
     }
 
     function showErrorNotification() {
-        $('#message p').text('Something went wrong...');
+        $('#message').text('Something went wrong...');
         $('#message').css('display', 'inline-block').hide().fadeIn(250);
     }
 
