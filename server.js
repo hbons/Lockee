@@ -84,13 +84,11 @@ var unblockAfter = 10 * 60 * 1000;
 
 // TODO: Limit number of lockers per IP
 var rateLimiter = function(req) {
-    return false; // TODO: Seems to block unwarranted sometimes 
-
     var now = new Date();
 
     if (blockedConnections[req.connection.remoteAddress] !== undefined) {
         if ((now - blockedConnections[req.connection.remoteAddress]) > unblockAfter) {
-            blockedConnections[req.connection.remoteAddress] = undefined;
+            delete blockedConnections[req.connection.remoteAddress];
 
         } else {
             blockedConnections[req.connection.remoteAddress] = now;
@@ -148,6 +146,9 @@ sass.render({ file: './public/stylesheets/default.sass' }, function(err, result)
 
 // Routes
 app.get('/', function(req, res) {
+    if (rateLimiter(req))
+        return res.status(429).json({}); // Too many connections
+
     res.render('page', {
         domain:             config.server.domain,
         app_name:           package_config.name,
