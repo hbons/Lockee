@@ -3,7 +3,6 @@
         "production": false,
         "domain":     "lockee.me",
         "port":       3000,
-        "covers":     "/images/covers/",
         "ssl": {
             "enabled":     false,
             "port":        3001,
@@ -19,6 +18,7 @@
         "location":   "./blobs/",
         "database":   "blobs.db",
         "size_limit": "20mb",
-        "time_limit": 86400
+        "time_limit": 86400,
+        "covers":     "/images/covers/"
    }
 }

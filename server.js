@@ -157,7 +157,7 @@ app.get('/', function(req, res) {
         admin_contact_info: config.server.admin.contact_info,
         repo_url:           package_config.repository.url,
         page_title:         package_config.name + ' — ' + package_config.description,
-        cover_file_name:    config.server.covers + covers[0].file_name,
+        cover_file_name:    config.locker.covers + covers[0].file_name,
         cover_author:       covers[0].author,
         cover_link:         covers[0].link
     });
@@ -221,7 +221,7 @@ app.get('/*', function(req, res) {
                     page_title:         pageTitle,
                     expires_in_seconds: expiresInSeconds,
                     salt:               salt,
-                    cover_file_name:    config.server.covers + cover.file_name,
+                    cover_file_name:    config.locker.covers + cover.file_name,
                     cover_author:       cover.author,
                     cover_link:         cover.link
                 });
