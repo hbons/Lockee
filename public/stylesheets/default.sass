@@ -79,16 +79,16 @@ form
     padding: 28px
     border-radius: 28px
     height: 280px
-    background-color: #171717
+    background-color: #181818
     box-shadow: 0 1px 6px rgba(0, 0, 0, 0.8)
-    border: 1px solid rgba(255, 255, 255, 0.03)
+    border: 1px solid rgba(255, 255, 255, 0.04)
     #window
         position: relative
         width: 100%
         background-color: #000
         height: 100%
         border-radius: 0px
-        border: 3px #222 solid
+        border: 3px #2a2a2a solid
         border-radius: 3px
         text-align: center
         &:hover
@@ -115,7 +115,7 @@ form
                 word-wrap: break-word
                 text-decoration: none
         #door
-            background-color: #171717
+            background-color: #181818
             position: absolute
             top: 0
             left: 0
@@ -175,13 +175,12 @@ button, input[type="button"], input[type="submit"]
     font-weight: bold
     border-radius: 4px
     text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.39)
-    padding: 8px
     border: 1px rgba(darken($base-color, 70%), 0.39) solid
     background-color: $base-color
     color: #fff
     text-transform: uppercase
     cursor: pointer
-    height: 35px
+    height: 37px
     &:hover, &:active
         background-color: lighten($base-color, 5%)
 
@@ -204,9 +203,9 @@ input
         font-family: 'Merriweather'
         font-size: 12px
         width: 72%
-        padding-top: 3px
+        padding-top: 2px
         padding-left: 10px
-        height: 35px
+        height: 37px
         float: left
         border-radius: 4px 0 0 4px
         border: 1px #bbb solid
@@ -231,6 +230,7 @@ input
     padding: 10px
     background-color: #fdfdfd
     margin: 0 auto
+    margin-top: 6px
     border: none
     width: 85%
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5)
@@ -252,7 +252,7 @@ input
     width: auto
     max-width: 100%
     p
-        height: 35px
+        height: 37px
         font-size: 13px
         color: rgba(0, 0, 0, 0.39)
         margin-bottom: 0
@@ -304,7 +304,7 @@ input
         float: left
         width: 300px
         height: 260px
-        margin: 36px 36px 0 0
+        margin: 37px 37px 0 0
     > a
         font-size: 24px
         display: block
@@ -363,27 +363,27 @@ footer
 
 @-webkit-keyframes spin
     0%
-        -moz-transform: rotate(0deg)
+        -webkit-transform: rotate(0deg)
     100%
-        -moz-transform: rotate(360deg)
+        -webkit-transform: rotate(360deg)
 
 @-o-keyframes spin
     0%
-        -moz-transform: rotate(0deg)
+        -o-transform: rotate(0deg)
     100%
-        -moz-transform: rotate(360deg)
+        -o-transform: rotate(360deg)
 
 @-ms-keyframes spin
     0%
-        -moz-transform: rotate(0deg)
+        -ms-transform: rotate(0deg)
     100%
-        -moz-transform: rotate(360deg)
+        -ms-transform: rotate(360deg)
 
 @keyframes spin
     0%
-        -moz-transform: rotate(0deg)
+        transform: rotate(0deg)
     100%
-        -moz-transform: rotate(360deg)
+        transform: rotate(360deg)
 
 
 // Fonts

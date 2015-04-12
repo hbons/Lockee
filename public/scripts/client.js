@@ -182,7 +182,7 @@ $(document).ready(function() {
     }
 
     function openDoor() {
-        $('#dial').on('animationiteration', function() {
+        $('#dial').on('animationiteration webkitAnimationIteration oanimationiteration MSAnimationIteration', function() {
             hideDialAnimation(true);
             hideDoor();
             showNote();
@@ -192,7 +192,7 @@ $(document).ready(function() {
     }
 
     function closeDoor() {
-        $('#dial').on('animationiteration', function() {
+        $('#dial').on('animationiteration webkitAnimationIteration oanimationiteration MSAnimationIteration', function() {
             hideDialAnimation(false);
             showSuccessNotification();
           
@@ -223,7 +223,7 @@ $(document).ready(function() {
     }
 
     function showDialError() {
-        $('#dial').on('animationiteration', function() {
+        $('#dial').on('animationiteration webkitAnimationIteration oanimationiteration MSAnimationIteration', function() {
             $('#dial.in-progress').css('animation-play-state', 'paused');
             $('#dial').removeClass('in-progress');
             $('#dial').addClass('error');
