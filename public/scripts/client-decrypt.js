@@ -82,8 +82,14 @@ function decrypt(key, iv, base64Data) {
 }
 
 function dataURItoBlob(dataURI) {
-    // TODO: Safari doesn't support atob() in web workers
-    var binary = atob(dataURI.split(',')[1]);
+    if (typeof atob == 'function') {
+        var binary = atob(dataURI.split(',')[1]);
+
+    } else {
+        importScripts('/scripts/base64.js');
+        var binary = base64.decode(dataURI.split(',')[1]);
+    }
+
     var array  = [];
 
     for(var i = 0; i < binary.length; i++)

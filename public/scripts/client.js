@@ -72,7 +72,7 @@ $(document).ready(function() {
             }
 
             var fileName = event.data[1];
-            var url = URL.createObjectURL(event.data[2]);
+            var url = URL.createObjectURL(event.data[2]); // TODO: Error in Safari
 
             decryptLockerWorker.terminate();
 
