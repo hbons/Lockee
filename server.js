@@ -84,6 +84,8 @@ var unblockAfter = 10 * 60 * 1000;
 
 // TODO: Limit number of lockers per IP
 var rateLimiter = function(req) {
+    return false;
+
     var now = new Date();
 
     if (blockedConnections[req.connection.remoteAddress] !== undefined) {
