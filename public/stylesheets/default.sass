@@ -9,6 +9,7 @@ $base-color: #599BBB
   -webkit-box-sizing: border-box
   -moz-box-sizing: border-box
   -o-box-sizing: border-box
+  -ms-box-sizing: border-box
   box-sizing: border-box
 
 :focus
@@ -80,6 +81,7 @@ form
     height: 280px
     background-color: #171717
     box-shadow: 0 1px 6px rgba(0, 0, 0, 0.8)
+    border: 1px solid rgba(255, 255, 255, 0.03)
     #window
         position: relative
         width: 100%
@@ -138,7 +140,15 @@ form
             &.in-progress
                 background-image: url('/images/status/in-progress.png');
                 display: block
+                -moz-animation: spin 1s infinite ease
+                -webkit-animation: spin 1s infinite ease
+                -o-animation: spin 1s infinite ease
+                -ms-animation: spin 1s infinite ease
                 animation: spin 1s infinite ease
+                -moz-animation-play-state: paused
+                -webkit-animation-play-state: paused
+                -o-animation-play-state: paused
+                -o-ms-play-state: paused
                 animation-play-state: paused
         #hint
             font-size: 13px
@@ -204,6 +214,8 @@ input
     background-color: #fff
   &[type='text']
     font-size: 13px
+  &[type='password']
+    line-height: 16px
   &[type='file']
     width: 100%
     height: 100%
@@ -219,13 +231,12 @@ input
   padding: 10px
   background-color: #fdfdfd
   margin: 0 auto
-  margin-top: 6px
   border: none
   width: 85%
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5)
   display: none
 
-.bubble:before
+.bubble:after
   content: ""
   position: relative
   margin: -15px
@@ -247,7 +258,7 @@ input
     margin-bottom: 0
     padding: 8px 14px
 
-#locker-go-to .bubble:before
+#locker-go-to .bubble:after
   top: 55px
   left: 33%
   border-width: 15px 15px 0
@@ -345,6 +356,30 @@ footer
 // Animations
 
 @-moz-keyframes spin
+    0%
+        -moz-transform: rotate(0deg)
+    100%
+        -moz-transform: rotate(360deg)
+
+@-webkit-keyframes spin
+    0%
+        -moz-transform: rotate(0deg)
+    100%
+        -moz-transform: rotate(360deg)
+
+@-o-keyframes spin
+    0%
+        -moz-transform: rotate(0deg)
+    100%
+        -moz-transform: rotate(360deg)
+
+@-ms-keyframes spin
+    0%
+        -moz-transform: rotate(0deg)
+    100%
+        -moz-transform: rotate(360deg)
+
+@keyframes spin
     0%
         -moz-transform: rotate(0deg)
     100%
