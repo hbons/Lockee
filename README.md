@@ -1,4 +1,5 @@
 # [Lockee](http://www.lockee.me/)
+There’s an instance of Lockee running on [lockee.me](http://www.lockee.me/).
 
 ## Temporary encrypted file lockers on the web.
 Seen those luggage lockers at the railway station? It’s like that, but for files.
