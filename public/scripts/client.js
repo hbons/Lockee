@@ -375,7 +375,7 @@ $(document).ready(function() {
 
     $('#cover-prefetch').load(function() {
         $('#cover').css('background-image', 'url("' + $('#cover-prefetch').attr('src') + '")');
-        $('#cover').fadeIn(1500);
+        $('#cover').fadeIn(1000);
     });
 
     // Browser support check

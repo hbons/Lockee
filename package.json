@@ -8,10 +8,12 @@
   },
   "main": "server.js",
   "author": "Hylke Bons",
-  "contributors": [{
-    "name": "Hylke Bons",
-    "email": "hi@planetpeanut.uk"
-  }],
+  "contributors": [
+    {
+      "name": "Hylke Bons",
+      "email": "hi@planetpeanut.uk"
+    }
+  ],
   "license": "AGPLv3",
   "dependencies": {
     "express": "~4.12.2",
@@ -21,7 +23,8 @@
     "compression": "~1.4.3",
     "node-sass": "~3.0.0-alpha.0",
     "async": "~0.9.0",
-    "helmet": "~0.7.1"
+    "helmet": "~0.7.1",
+    "node-schedule": "~0.2.6"
   },
   "scripts": {
     "clean": "rm ./blobs.db && rm -Rf ./blobs/"

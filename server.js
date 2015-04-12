@@ -34,7 +34,7 @@ var async       = require('async');
 var express     = require('express');
 var helmet      = require('helmet');
 var sass        = require('node-sass');
-
+var schedule    = require('node-schedule');
 
 // Express
 var app     = express();
@@ -121,12 +121,12 @@ app.use(bodyParser.json({ limit: config.locker.size_limit }))
 // Database
 var db = new sqlite3.Database(config.locker.database);
 
-db.run("CREATE TABLE IF NOT EXISTS lockers (\
-            timestamp TIMESTAMP DEFAULT (strftime('%s', 'now')), \
+db.run('CREATE TABLE IF NOT EXISTS lockers (\
+            timestamp TIMESTAMP DEFAULT (strftime(\'%s\', \'now\')), \
             path_digest TEXT PRIMARY KEY, \
             passphrase_digest TEXT, \
             salt TEXT, \
-            encrypted_file_name TEXT)");
+            encrypted_file_name TEXT)');
 
 fs.mkdir(config.locker.location, function(err) {
    if (err && err.code != 'EEXIST')
@@ -181,9 +181,9 @@ app.get('/*', function(req, res) {
         }
            
         if (expiresInSeconds < 0) {
-            var sql = db.prepare ('DELETE FROM lockers WHERE path_digest = ?');
+            var sql = db.prepare('DELETE FROM lockers WHERE path_digest = ?');
 
-            sql.run (pathDigest, function() {
+            sql.run(pathDigest, function() {
                 fs.unlink(config.locker.location + pathDigest, function(err) {
                     if(err) return console.log(err);
                 })
@@ -330,6 +330,29 @@ app.post('/*', function(req, res) {
     } else {
         return res.status(400).json({}); // Bad Request
     }
+});
+
+
+// Scheduled tasks
+function removeExpiredBlobs() {
+    var timeLimit = Math.floor(new Date() / 1000) - config.locker.time_limit;
+
+    db.each('SELECT timestamp, path_digest FROM lockers', function(err, row) {
+        if (row.timestamp < timeLimit) {
+            var sql = db.prepare ('DELETE FROM lockers WHERE path_digest = ?');
+
+            sql.run (row.path_digest, function() {
+                fs.unlink(config.locker.location + row.path_digest, function(err) {
+                    if(err) return console.log(err);
+                })
+            });
+        }
+    });
+}
+
+schedule.scheduleJob('0,15,30,45 * * * *', function() {
+    console.log('Running scheduled task: removeExpiredBlobs()');
+    removeExpiredBlobs();
 });
 
 
