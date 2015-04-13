@@ -31,3 +31,17 @@ By default, Lockee is accessible on `http://localhost:3000/`. You can change thi
 
 ## License
 You can use, modify, and redistribute Lockee under the terms of the [AGPLv3](LICENSE.txt), given that you change the software’s visible name and logo.
+
+## How you can help
+
+There are different ways you can help, and you don't need to code to contribute.
+Current important to do items:
+
+- Safari support
+- Security review
+- Accessibility review
+- Mobile CSS
+- More file type icons
+- More cover photos (Creative Commons licensed work)
+
+All contributions are appreciated!
