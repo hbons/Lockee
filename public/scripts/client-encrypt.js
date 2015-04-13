@@ -28,7 +28,7 @@ self.addEventListener('message', function(event) {
     var saltBits  = sjcl.codec.hex.toBits(salt);
     var bitLength = 512
 
-    var pbkdf2Bits   = sjcl.misc.pbkdf2(passphrase, saltBits, 100 * 1000, bitLength);
+    var pbkdf2Bits   = sjcl.misc.pbkdf2(passphrase, saltBits, 20 * 1000, bitLength);
     var pbkdf2Digest = sjcl.codec.hex.fromBits(pbkdf2Bits);
 
     var derivedKey       = pbkdf2Digest.substr(0,             bitLength / 8);
