@@ -3,20 +3,20 @@
 $base-color: #599BBB
 
 *
-  margin: 0
-  padding: 0
-  line-height: 100%
-  -webkit-box-sizing: border-box
-  -moz-box-sizing: border-box
-  -o-box-sizing: border-box
-  -ms-box-sizing: border-box
-  box-sizing: border-box
+    margin: 0
+    padding: 0
+    line-height: 100%
+    -webkit-box-sizing: border-box
+    -moz-box-sizing: border-box
+    -o-box-sizing: border-box
+    -ms-box-sizing: border-box
+    box-sizing: border-box
 
 :focus
     outline: none
 
 html, body
-  min-height: 100%
+    min-height: 100%
 
 body
     font-family: 'Merriweather'
@@ -37,6 +37,7 @@ body
 h1
     font-size: 34px
     font-weight: normal
+    line-height: 139%
 
 h2
     font-size: 20px
@@ -71,7 +72,7 @@ form
     text-align: center
     margin-left: -140px
     margin-top: -190px
-    @media (min-width: 960px)
+    @media (min-width: 800px)
         left: 33%
 
 #locker
@@ -170,6 +171,18 @@ form
             a
                 font-size: 15px
 
+::-webkit-input-placeholder
+    font-family: 'Merriweather'
+
+:-moz-placeholder
+    font-family: 'Merriweather'
+
+::-moz-placeholder
+    font-family: 'Merriweather'
+
+:-ms-input-placeholder
+    font-family: 'Merriweather'
+
 #locker-empty #door
     display: none
 
@@ -223,6 +236,7 @@ input
         font-size: 13px
     &[type='password']
         line-height: 16px
+        font-family: 'Lato'
     &[type='file']
         width: 100%
         height: 100%
@@ -313,52 +327,71 @@ input
     height: 100%
     background-color: rgba(0, 0, 0, 0.85)
     padding: 56px
+    h1
+        max-width: 85%
+    > p
+        max-width: 85%
     section
         float: left
         width: 300px
-        height: 260px
         margin: 37px 37px 0 0
     > a
         font-size: 24px
         display: block
         clear: both
         width: 300px
+    .button-close::after
+        content: '✕'
+        padding: -56px
+        width: 112px
+        height: 112px
+        cursor: pointer
+        position: absolute
+        top: 20px
+        right: 0
+        text-align: center
+        vertical-align: middle;
+        line-height: 112px
+        font-size: 36px
+        opacity: 0.8
+    .button-close:hover::after
+        opacity: 1
 
 footer
     background-color: #171717
-    border-top: 1px #000 solid
+    border-top: 1px #111 solid
     font-size: 13px
     width: 100%
     position: fixed
     bottom: 0
     left: 0
     padding: 0 48px
+    height: 65px
     #logo
         float: left
-        display: block
-        padding: 13px 0
+        padding: 14px 0
         img
             width: 86px
     nav
+        float: left
         position: relative
         padding: 12px
-        float: left
     #tagline
-        display: block
         float: left
-        padding: 22px
+        line-height: 63px
+        padding-left: 22px
         color: rgba(255, 255, 255, 0.39)
-        @media (max-width: 960px)
+        @media (max-width: 800px)
           display: none
         a
+            vertical-align: middle
             margin-left: 4px
             font-size: 15px
     #artist
+        float: right
         color: rgba(255, 255, 255, 0.39)
         text-decoration: none
-        display: block
-        float: right
-        padding: 23px 0
+        line-height: 63px
         span
             font-weight: bold
             font-family: 'Merriweather'

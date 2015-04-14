@@ -26,13 +26,12 @@ html
         section
             h2 Private
             p Lockers are anonymous and passphrase protected. No personal information is required or collected.
-            p Files put in lockers are encrypted on your device before being sent securely to the server.
+            p Files put in lockers are kept for 24 hours, and encrypted on your device before being sent securely to the server.
         section
             h2 Open Source
             p #{app_name} is Free and Open Source software. You can see the <a href="#{repo_url}" target="blank">source code</a> and even run your own instance.
             p Questions or comments?<br>Contact <a href="#{admin_contact_info}" target="_blank">#{admin_name}</a>.
-        a(href="") Aha. Cheers, thanks.
-        //- TODO: Close button
+        .button-close
     footer
         a#logo(href="/", target="_blank")
             img(src="/images/logo/logo-inverted.png" alt="#{page_title}")
@@ -43,7 +42,7 @@ html
                     span #{domain}/
                     input(type="text", maxlength="24")
                     input(type="submit", value="Go", disabled="disabled")
-        #tagline #{description} <a href="">I beg your pardon?</a>
+        #tagline #{description} <a href="">Huh, what?</a>
         a#artist(href="#{cover_link}", target="_blank") Cover by &nbsp;<span>#{cover_author}</span>
     img(src='/images/status/idle.png')
     img(src='/images/status/in-progress.png')

@@ -298,6 +298,7 @@ $(document).ready(function() {
 
     // Go To fieldset
     $('footer button').on('click', function() {
+        hideInfoPanel();
         $('#locker-go-to fieldset').fadeToggle(250);
         putCursorAtEnd($('#locker-go-to fieldset input[type="text"]'));
     });
@@ -324,13 +325,23 @@ $(document).ready(function() {
 
 
     // Info panel
+    function hideInfoPanel() {
+        $('#info-panel').fadeOut();
+        $('footer #tagline').fadeIn();
+    }
+
+    function showInfoPanel() {
+        $('footer #tagline').fadeOut();
+        $('#info-panel').fadeIn();
+    }
+
     $('footer #tagline a').on('click', function(event) {
-        $('#info-panel').fadeToggle();
+        showInfoPanel();
         event.preventDefault();
     });
 
-    $('#info-panel > a').on('click', function(event) {
-        $('#info-panel').fadeOut();
+    $('#info-panel .button-close').on('click', function(event) {
+        hideInfoPanel();
         event.preventDefault();
     });
 
@@ -385,6 +396,16 @@ $(document).ready(function() {
         $('#cover').css('background-image', 'url("' + $('#cover-prefetch').attr('src') + '")');
         $('#cover').fadeIn(1000);
     });
+
+
+    // Show info panel on first visit to the home page
+    if (window.location.pathname == '/' &&
+        document.cookie.replace(/(?:(?:^|.*;\s*)firstVisit\s*\=\s*([^;]*).*$)|^.*$/, "$1") !== "true") {
+
+        showInfoPanel();
+        document.cookie = "firstVisit=true; expires=Fri, 31 Dec 9999 23:59:59 GMT; path=/";
+    }
+
 
     // Browser support check
     if (window.File && window.FileReader && window.FileList && window.Blob)
