@@ -14,6 +14,8 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+// Set the current working directory
+process.chdir(__dirname)
 
 // Configuration
 var package_config = require('./package.json');
