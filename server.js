@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 // Lockee
 // Copyright (C) 2015  Hylke Bons
 //

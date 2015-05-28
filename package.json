@@ -15,6 +15,9 @@
     }
   ],
   "license": "AGPLv3",
+  "bin": {
+    "lockee": "./server.js"
+  },
   "dependencies": {
     "express": "~4.12.2",
     "jade": "~1.9.2",
