@@ -162,7 +162,7 @@ $(document).ready(function() {
 
     // Notifications
     function showSuccessNotification() {
-        $('#message').text('lockee.me' + window.location.pathname);
+        $('#message').text(window.location.hostname + window.location.pathname);
         $('#message').css('display', 'inline-block').hide().fadeIn(250);
     }
 
