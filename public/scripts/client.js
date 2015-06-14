@@ -285,6 +285,9 @@ $(document).ready(function() {
     }
 
     function putCursorAtEnd(input) {
+        var new_padding = $('#locker-go-to fieldset span').width() + 15;
+        input.css({"padding-left": new_padding});
+
         input.focus();
         var text = input.val();
 
