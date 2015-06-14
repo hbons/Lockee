@@ -300,7 +300,12 @@ $(document).ready(function() {
     $('footer button').on('click', function() {
         hideInfoPanel();
         $('#locker-go-to fieldset').fadeToggle(250);
-        putCursorAtEnd($('#locker-go-to fieldset input[type="text"]'));
+
+        var input_field = $('#locker-go-to fieldset input[type="text"]');
+        var new_padding = $('#locker-go-to fieldset span').width() + 15;
+
+        input_field.css({"padding-left": new_padding});
+        putCursorAtEnd(input_field);
     });
 
     $('#locker-go-to').on('submit', function(event) {
